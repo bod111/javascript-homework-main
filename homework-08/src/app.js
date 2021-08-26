@@ -107,16 +107,27 @@ refs.gallery.addEventListener('click', onPictureClick)
 
 function onPictureClick(e) {
 e.preventDefault();
-  if (!e.target.classList.contains('gallery__image')) {
-  return
-}
+//   if (!e.target.classList.contains('gallery__image')) {
+//   return
+// }
   refs.jsLightBox.classList.add('is-open');
   refs.lightBoxImage.src = e.target.dataset.source;
 }
 
-refs.jsLightBox.addEventListener('click', onModalCloseBtnClick)
-function onModalCloseBtnClick(e) {
+refs.jsLightBox.addEventListener('click', onModalCloseClick)
+window.addEventListener('keydown', onKeydown)
+
+function onModalCloseClick(e) {
   if (e.target.classList.contains('lightbox__button')) {
+    closeModal();
+  }
+  if (e.target.classList.contains('lightbox__overlay')) {
+    closeModal();
+  }
+}
+ 
+function onKeydown(e) {
+  if (e.code === 'Escape') {
     closeModal();
   }
 }
